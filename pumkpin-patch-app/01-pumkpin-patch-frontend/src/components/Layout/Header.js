@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../assets/Capture.JPG";
+import logo from "../../assets/pumpk.png";
 import image from "../../assets/bb1.JPG"
 import classes from './Header.module.css'
 import HeaderLoginButton from './HeaderLoginButton';

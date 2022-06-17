@@ -4,7 +4,7 @@ import React from "react";
 
 const HeaderLoginButton = props => {
     return(
-        <button className={classes.button}>
+        <button className={classes.button} >
             
            
             <span>Login</span>

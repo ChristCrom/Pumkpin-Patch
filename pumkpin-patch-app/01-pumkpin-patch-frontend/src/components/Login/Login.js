@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Modal from '../UI/Modal';
-import classes from './Cart.module.css'
+import classes from './Login.module.css'
 
-const Cart = props =>{
+const Login = props =>{
     const cartItems = <ul className={classes['cart-items']}>{[{id:'c1', name: 'Sushi', amount: 2, price: 12.99 },]
                         .map((item)=> (<li>{item.name}</li>))}</ul>
     return (
@@ -21,4 +21,4 @@ const Cart = props =>{
     );
 };
 
-export default Cart;
+export default Login;
