@@ -10,14 +10,15 @@
   
   .modal {
     position: fixed;
-    top: 20vh;
-    left: 5%;
-    width: 90%;
-    background-color: white;
+    top: 15vh;
+    left: 200%;
+    width: 150%;
+    height: auto;
+    
     padding: 1rem;
     border-radius: 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    z-index: 30;
+    z-index: 60;
     animation: slide-down 300ms ease-out forwards;
   }
   
