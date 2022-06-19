@@ -16,6 +16,7 @@ const [enteredSec2, setEnteredSec2] = useState('');
 
 const CancelHandler = event =>{
         props.onForgotPassword(false);
+        props.setLoginActive(true);
     }
 
 const submitHandler = event =>{

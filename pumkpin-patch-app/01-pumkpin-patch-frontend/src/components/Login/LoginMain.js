@@ -21,10 +21,11 @@ const LoginMain = props => {
 
     const onForgotSubmit = (email, sec1, sec2) => {
         if (email === DUMMY_USER.email && sec1 === DUMMY_USER.sec1 && sec2 === DUMMY_USER.sec2) {
-            console.log("its supposed to work on forgotsbmit")
+           
             setPasswordForgotVeri(true);
+            setChangePassword(true)
         }
-        else if (email != DUMMY_USER.email) {
+        else if (email !== DUMMY_USER.email) {
             alert("User with Given email does not exisit Please try again with valid email")
         }
         else {
@@ -50,10 +51,12 @@ const LoginMain = props => {
     };
 
     const onPasswordChange = event =>{
-        console.log(event)
+       
         setChangePassword(false);
         DUMMY_USER.password = event.toString();
-        console.log(DUMMY_USER.password)
+        props.setLoginActive(true)
+        alert('Success! your password has been updated.')
+       
         
     }
 
@@ -63,8 +66,8 @@ const LoginMain = props => {
 
     return (
         <Fragment>
-        {passwordForogtVeri && changePassword && <ChangePassword  onPasswordChange = {onPasswordChange} setChangePassword={setChangePassword}/>}
-            {forgotPassword && <ForgotPassword onForgotSubmit={onForgotSubmit} onForgotPassword={ForgotPasswordEvent} />}
+        {passwordForogtVeri && changePassword && <ChangePassword setLoginActive={props.setLoginActive} onPasswordChange = {onPasswordChange} setChangePassword={setChangePassword}/>}
+            {forgotPassword && <ForgotPassword setLoginActive={props.setLoginActive} onForgotSubmit={onForgotSubmit} onForgotPassword={ForgotPasswordEvent} />}
             {props.loginActive && <LoginPage   onLogin={loginHandler} onLoginClick={LoginNotActiveHandler} onForgotPassword={ForgotPasswordEvent} />}
         </Fragment>
     );

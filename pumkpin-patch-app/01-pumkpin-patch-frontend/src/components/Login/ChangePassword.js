@@ -47,6 +47,7 @@ const ChangePassword = props => {
   };
   const onCancelHandler = event => {
     props.setChangePassword(false);
+    props.setLoginActive(true);
     
   };
  
