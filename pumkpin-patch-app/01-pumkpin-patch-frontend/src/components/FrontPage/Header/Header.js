@@ -1,30 +1,43 @@
 import React from 'react';
 import logo from "../../../assets/pumpk.png";
-import image from "../../../assets/bb1.JPG"
-import classes from './Header.module.css'
+import  './Header.css'
 import HeaderLoginButton from './HeaderLoginButton';
-
+import img1 from '../../../assets/kids.png'
+import img2 from '../../../assets/CircleLogo.png'
+window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+          document.getElementById("img2").style.height = "300%";
+          document.getElementById("img2").style.transform = "translate(90%,-30%)";
+        } else {
+          document.getElementById("img2").style.height = "550%";
+          document.getElementById("img2").style.transform = "translate(80%,-21%)";
+        }
+      }
 const Header = props => {
-   
+    
     return (
         <React.Fragment>
             
-            <header className={classes.header}>
+            <header className='header'>
                 
-                <div className={classes.dropdown}>
-                    <button className={classes.dropbtn}>Menu</button>
-                    <div  className={classes['dropdown-content']}>
-                    <a onClick={()=>props.setPageSelector('About Us')}>About Us</a>
-                    <a onClick={()=>props.setPageSelector('Programs')}>Programs</a>
-                    <a onClick={()=>props.setPageSelector('Waitlist Information')}>Waitlist Information</a>
+                <div className='dropdown'>
+                    <button className='dropbtn'>Menu</button>
+                    <div  className='dropdown-content'>
+                    <button onClick={()=>props.setPageSelector('About Us')}>About Us</button>
+                    <button onClick={()=>props.setPageSelector('Programs')}>Programs</button>
+                    <button onClick={()=>props.setPageSelector('Waitlist Information')}>Waitlist Information</button>
                     </div>
                     </div>
                     
                     
-
-                <div className={classes.title}>
-                <img className={classes.icon} src = {logo} alt = 'logo'  />
-                </div>
+                <img className='pic1'src={img1} />
+                
+                <img className='icon' src = {logo} alt = 'logo'  />
+                
+                
+                <img  id="img2" className='pic2' src={img2} /> 
+                
                 <HeaderLoginButton isLoggedIn={props.isLoggedIn} onLoginClick={props.onLoginClick} onLogOutClick={props.onLogoutClick}/>
                 </header>
             

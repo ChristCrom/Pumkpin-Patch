@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../UI/Card';
 import Modal from '../UI/Modal';
-import ForgotPassword from './ForgotPassword';
 import classes from './LoginPage.module.css'
 
 const LoginPage = (props) => {
@@ -21,7 +20,6 @@ const LoginPage = (props) => {
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
-
     setFormIsValid(
       event.target.value.trim().length > 6 && enteredEmail.includes('@')
     );

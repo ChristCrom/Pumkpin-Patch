@@ -1,8 +1,7 @@
 import React from 'react';
 
+import './PhotoGallery.css'
 import PhotoAlbum from 'react-photo-album'
-import Card from '../../UI/Card';
-import classes from './PhotoGallery.css'
 import bb  from '../../../assets/bb.jpg';
 import bb1  from '../../../assets/bb1.JPG';
 import bonai1  from '../../../assets/bonai1.jfif';
