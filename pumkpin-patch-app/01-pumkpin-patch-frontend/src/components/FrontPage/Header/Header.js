@@ -29,7 +29,7 @@ const Header = props => {
                     <button onClick={()=>props.setPageSelector('Waitlist Information')}>Waitlist Information</button>
                     </div>
                     </div>
-                    
+                   
                     
                 <img className='pic1'src={img1} />
                 
@@ -37,8 +37,16 @@ const Header = props => {
                 
                 
                 <img  id="img2" className='pic2' src={img2} /> 
+                {/* <div className='dropdown'>
+                    <button className='dropbtn'>Profile</button>
+                    <div  className='dropdown-content'>
+                    <button onClick={()=>props.setPageSelector('About Us')}>Profile Information</button>
+                    <button onClick={()=>props.setPageSelector('Programs')}>Waitlist</button>
+                    
+                    </div>
+                    </div> */}
+                <HeaderLoginButton user={props.user}isSignedIn={props.isSignedIn}isLoggedIn={props.isLoggedIn} onLoginClick={props.onLoginClick} onLogOutClick={props.onLogoutClick}/>
                 
-                <HeaderLoginButton isLoggedIn={props.isLoggedIn} onLoginClick={props.onLoginClick} onLogOutClick={props.onLogoutClick}/>
                 </header>
             
         </React.Fragment>

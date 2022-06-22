@@ -1,26 +1,37 @@
 import classes from "./HeaderLoginButton.module.css"
-import React from "react";
+import React, { Fragment, useState } from "react";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+
 
 const HeaderLoginButton = props => {
-    if (props.isLoggedIn){
-    return (
+    
+    
+    
+     
+
+    if ( props.isLoggedIn ) {
+    return(
+       
         <button className={classes.button}  onClick={props.onLogOutClick} >
             
            
         <span>Logout</span>
     
     </button>
-    );
-}
-if( !props.isLoggedIn)
-    return(
-        <button className={classes.button}  onClick={props.onLoginClick } >
+   
+    )}
+    else {
+        return(
+            <button className={classes.button}  onClick={props.onLoginClick } >
+                
+               
+                <span>Login</span>
             
-           
-            <span>Login</span>
-        
-        </button>
-    );
-};
+            </button>
+        );
+      // No user is signed in.
+    }
 
+  };
 export default HeaderLoginButton;

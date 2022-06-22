@@ -10,8 +10,10 @@ const LoginMain = props => {
     {
         email: "christcrom988@gmail.com",
         password: "phenoix1",
-        sec1: "Django",
-        sec2: "Burnet"
+        sec: [ "Django",
+         "Burnet",
+         "Cromer",
+          "NissanTitan"]
     };
 
     const [forgotPassword, setForgotPassword] = useState(false);
@@ -19,20 +21,37 @@ const LoginMain = props => {
     const [passwordForogtVeri, setPasswordForgotVeri] = useState(false);
 
 
-    const onForgotSubmit = (email, sec1, sec2) => {
-        if (email === DUMMY_USER.email && sec1 === DUMMY_USER.sec1 && sec2 === DUMMY_USER.sec2) {
+    const onForgotSubmit = (email, sec1, sec2, sec3, sec4, needed) => {
+        console.log(needed);
+        var count = 0;
+        if( DUMMY_USER.sec.includes(sec1)){
+            count++;
+        }
+        if(DUMMY_USER.sec.includes(sec2)){
+            count++;
+        }
+        if(DUMMY_USER.sec.includes(sec3)){
+            count++;
+        }
+        if(DUMMY_USER.sec.includes(sec4)){
+            count++;
+        }
+        if (count > needed) {
            
             setPasswordForgotVeri(true);
             setChangePassword(true)
         }
-        else if (email !== DUMMY_USER.email) {
-            alert("User with Given email does not exisit Please try again with valid email")
-        }
+        
         else {
-            alert("One or Both of your Security Questions are incorrect please try again!")
+            alert("One or all of your Security Questions are incorrect please try again!")
         }
 
     };
+    const onEmailBlur = (email) => {
+        if (email !== DUMMY_USER.email) {
+            alert("User with Given email does not exisit Please try again with valid email")
+        }
+    }
     const ForgotPasswordEvent = event => {
         setForgotPassword(event);
     };
@@ -67,8 +86,8 @@ const LoginMain = props => {
     return (
         <Fragment>
         {passwordForogtVeri && changePassword && <ChangePassword setLoginActive={props.setLoginActive} onPasswordChange = {onPasswordChange} setChangePassword={setChangePassword}/>}
-            {forgotPassword && <ForgotPassword setLoginActive={props.setLoginActive} onForgotSubmit={onForgotSubmit} onForgotPassword={ForgotPasswordEvent} />}
-            {props.loginActive && <LoginPage   onLogin={loginHandler} onLoginClick={LoginNotActiveHandler} onForgotPassword={ForgotPasswordEvent} />}
+            {forgotPassword && <ForgotPassword onEmailBlur={onEmailBlur} setLoginActive={props.setLoginActive} onForgotSubmit={onForgotSubmit} onForgotPassword={ForgotPasswordEvent} />}
+            {props.loginActive && <LoginPage  setIsLoggedIn={props.setIsLoggedIn} isLoggedIn={props.isLoggedIn} onLogin={loginHandler} onLoginClick={LoginNotActiveHandler} onForgotPassword={ForgotPasswordEvent} />}
         </Fragment>
     );
 };
