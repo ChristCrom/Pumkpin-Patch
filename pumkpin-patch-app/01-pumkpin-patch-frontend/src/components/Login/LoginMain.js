@@ -5,6 +5,7 @@ import ForgotPassword from "./ForgotPassword";
 import Card from '../UI/Card';
 import Modal from '../UI/Modal';
 import ChangePassword from "./ChangePassword";
+import LoginOfficial from "./LoginOfficial";
 const LoginMain = props => {
     var DUMMY_USER =
     {
@@ -87,7 +88,7 @@ const LoginMain = props => {
         <Fragment>
         {passwordForogtVeri && changePassword && <ChangePassword setLoginActive={props.setLoginActive} onPasswordChange = {onPasswordChange} setChangePassword={setChangePassword}/>}
             {forgotPassword && <ForgotPassword onEmailBlur={onEmailBlur} setLoginActive={props.setLoginActive} onForgotSubmit={onForgotSubmit} onForgotPassword={ForgotPasswordEvent} />}
-            {props.loginActive && <LoginPage  setIsLoggedIn={props.setIsLoggedIn} isLoggedIn={props.isLoggedIn} onLogin={loginHandler} onLoginClick={LoginNotActiveHandler} onForgotPassword={ForgotPasswordEvent} />}
+            {props.loginActive && <LoginOfficial  setIsLoggedIn={props.setIsLoggedIn} isLoggedIn={props.isLoggedIn} onLogin={loginHandler} onLoginClick={LoginNotActiveHandler} onForgotPassword={ForgotPasswordEvent} />}
         </Fragment>
     );
 };

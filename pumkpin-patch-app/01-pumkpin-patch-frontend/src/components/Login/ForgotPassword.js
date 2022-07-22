@@ -36,8 +36,7 @@ const ForgotPassword = props => {
   }
 
   const submitHandler = event => {
-    event.preventDefault();
-    
+      event.preventDefault();
       props.onForgotSubmit(enteredEmail, enteredSec1, enteredSec2, enteredSec3, enteredSec4, index);
       props.onForgotPassword(false);
     }
@@ -84,11 +83,11 @@ const validateEmailHandler = () => {
     console.log(event.target.id)
     if (event.target.id === "1"){
     setSelectQuestion1(true);}
-    if (event.target.id === "2"){
+      if (event.target.id === "2"){
       setSelectQuestion2(true);}
-      if (event.target.id === "3"){
+        if (event.target.id === "3"){
         setSelectQuestion3(true);}
-        if (event.target.id === "4"){
+          if (event.target.id === "4"){
           setSelectQuestion4(true);}
   }
   const techCompanies = [

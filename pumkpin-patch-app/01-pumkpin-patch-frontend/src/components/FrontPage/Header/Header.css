@@ -21,11 +21,11 @@
  
   .icon{
     position: absolute;
-    height:85px;
-   width: 150;
-   transform: translateX(60rem);
+    height:100%;
+    width: 20%;
+    transform: translateX(60rem);
     justify-content: center;
-    display: inline-block;
+    display: flex;
     
 
   }

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import "firebase/compat";
+import firebase from 'firebase/compat/app';
 
 import './PhotoGallery.css'
 import PhotoAlbum from 'react-photo-album'
@@ -6,6 +8,7 @@ import bb  from '../../../assets/bb.jpg';
 import bb1  from '../../../assets/bb1.JPG';
 import bonai1  from '../../../assets/bonai1.jfif';
 import Capture  from '../../../assets/Capture.JPG';
+import { render } from 'react-dom';
 
 
 
@@ -36,22 +39,25 @@ import Capture  from '../../../assets/Capture.JPG';
 ];
   
 const PhotoGallery = () => {
+   
     
-
-  
-  
-
-    return (
+     return (
+        <Fragment>
+                
+                   
+        
+               
         <section className="meals">
            
                 <h1 className='summary' text-align = "center"  position = "relative">Gallery</h1>
                 
            <PhotoAlbum layout='rows' photos = {photos} onClick />
+           
 
                 
             
         </section>
-    )
+    </Fragment>)
 
 };
 

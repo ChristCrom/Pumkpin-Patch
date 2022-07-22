@@ -7,11 +7,14 @@ import LoginMain from "./components/Login/LoginMain";
 import InformationPages from "./components/InformationPages/InformationPages";
 import "firebase/compat";
 import firebase from 'firebase/compat/app';
+import AdminPage from "./components/Admin/AdminPage";
+import {Route, Router, Routes} from "react-router-dom"
+import MembersMain from "./components/Members/MembersMain";
 
 
 function App() {
   
-  const [user,setUser] = useState(localStorage.getItem('user'));
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginActive, setLoginActive] = useState(false);
   const [pageSelector, setPageSelector] = useState('');
@@ -21,27 +24,53 @@ function App() {
   };
   const logOutHandler = (email, password) => {
     firebase.auth().signOut();
-    setUser(null);
-    localStorage.setItem("user",null);
+   
     setIsLoggedIn(false);
     setLoginActive(false)
+    
   };
+
+
   const config = {
     apiKey: 'AIzaSyCublmOZZ47OTX3ktg1f1JExx8QDapNaQI',
     authDomain: 'pumpkin-patch-c17f4.firebaseapp.com',
+    projectId: 'pumpkin-patch-c17f4'
     // ...
   };
    
  firebase.initializeApp(config);
+ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+ 
+ 
 
   return (
     <Fragment>
-      <InformationPages setPageSelector = {setPageSelector} PageSelector={pageSelector}/>
-      <LoginMain isLoggedIn={isLoggedIn} setLoginActive={setLoginActive} loginActive={loginActive} setIsLoggedIn={setIsLoggedIn}  />
-      <Header    user={user}setPageSelector={setPageSelector}isLoggedIn={isLoggedIn} onLoginClick={LoginButtonActiveHandler} onLogoutClick={logOutHandler} />
-      <FrontBanner setPageSelector={setPageSelector}/>
-      <PhotoGallery />
-    </Fragment>
+      <Route path ="/home">
+        <Header    setPageSelector={setPageSelector}isLoggedIn={isLoggedIn} onLoginClick={LoginButtonActiveHandler} onLogoutClick={logOutHandler} />
+        <FrontBanner setPageSelector={setPageSelector}/>  
+        <LoginMain isLoggedIn={isLoggedIn} setLoginActive={setLoginActive} loginActive={loginActive} setIsLoggedIn={setIsLoggedIn}  />
+        <InformationPages setPageSelector = {setPageSelector} PageSelector={pageSelector}/>
+        <PhotoGallery />
+        
+        
+      </Route>
+    
+      
+      <Route path="/waitlist"> 
+        {/* <Header    setPageSelector={setPageSelector}isLoggedIn={isLoggedIn} onLoginClick={LoginButtonActiveHandler} onLogoutClick={logOutHandler} />  */}
+        <InformationPages setPageSelector = {setPageSelector} PageSelector={pageSelector}/>
+        <LoginMain isLoggedIn={isLoggedIn} setLoginActive={setLoginActive} loginActive={loginActive} setIsLoggedIn={setIsLoggedIn}  />
+        <MembersMain />
+        <AdminPage />
+      </Route>
+
+     
+       
+        
+     
+     
+      </Fragment>
+    
   );
 }
 

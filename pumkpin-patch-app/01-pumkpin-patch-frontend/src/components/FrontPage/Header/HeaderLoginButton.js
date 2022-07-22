@@ -1,16 +1,22 @@
 import classes from "./HeaderLoginButton.module.css"
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
 
 const HeaderLoginButton = props => {
-    
-    
-    
-     
-
-    if ( props.isLoggedIn ) {
+const [users, setUsers] = useState(false)
+  useEffect(() =>{
+  firebase.auth().onAuthStateChanged(function(user) {
+    if(user){
+      setUsers(true);
+    }else{
+      setUsers(false)
+    }
+    })
+  },[])
+  if(users ===true || props.isLoggedIn ==true){
+    console.log(firebase.auth().currentUser)
     return(
        
         <button className={classes.button}  onClick={props.onLogOutClick} >
@@ -20,8 +26,8 @@ const HeaderLoginButton = props => {
     
     </button>
    
-    )}
-    else {
+    );}
+    else{
         return(
             <button className={classes.button}  onClick={props.onLoginClick } >
                 
@@ -29,9 +35,10 @@ const HeaderLoginButton = props => {
                 <span>Login</span>
             
             </button>
-        );
-      // No user is signed in.
-    }
+        );} 
+     
+     // No user is signed in.
+    
 
   };
 export default HeaderLoginButton;
