@@ -48,7 +48,7 @@ const Header = props => {
                     <button className='dropbtn'>Profile</button>
                     <div  className='dropdown-content'>
                     <button>                        
-                    <a href='http://localhost:3000/profile'>Waitlist</a>
+                    <a href='http://localhost:3000/profile'>Profile</a>
                     </button>
                     <button>
                         <a href='http://localhost:3000/waitlist'>Waitlist</a>

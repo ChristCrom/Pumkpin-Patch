@@ -5,12 +5,24 @@ import Modal from "../UI/Modal";
 import { loadStripe } from "@stripe/stripe-js";
 import firebase from "firebase/compat/app";
 
-import './MembersMain.css'
+import classes from './MembersMain.module.css'
+import { Redirect } from "react-router-dom";
 
 const MembersMain = (props) => {
   const [waitlistActive, setWaitlistActive] = useState(false);
-  var user = null;
+  const [Paid, setPaid] = useState(false);
+  const[formButton, setFormButton] = useState(false);
 
+  const[PGName, setPGName] = useState();
+  const[KidName, setKidName] = useState();
+  const[Birthdate, setBirthdate] = useState();
+  const[Phone, setPhone ] = useState();
+  const[Email, setEmail] = useState();
+
+  const db = firebase.firestore();
+  var user = null;
+  
+  
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userAuth) => {
       const user1 = {
@@ -19,7 +31,11 @@ const MembersMain = (props) => {
       };
       if (userAuth) {
         user = user1;
-        const hasPaid = firebase.firestore().collection("users").doc(user.uid).collection("payments")
+        const hasPaid = firebase.firestore().collection("users").doc(user.uid).collection("payments");
+        if(hasPaid){
+          setPaid(true);
+        }
+       
         console.log(hasPaid)
         console.log(user);
       } else {
@@ -30,8 +46,30 @@ const MembersMain = (props) => {
     
   });
 
+ const onChangeHandler = (event) =>{
+  if(event.target.id === 'PGName'){
+      setPGName(event.target.value)
+  }
+  if(event.target.id === 'KidName'){
+    setKidName(event.target.value)
+  }
+  if(event.target.id === 'Birthdate'){
+    setBirthdate(event.target.value)
+  }
+  if(event.target.id === 'Phone'){
+    setPhone(event.target.value)
+  }
+  if(event.target.id === 'Email'){
+    setEmail(event.target.value)
+  }
+ }
+
   const onStripeClick = async () => {
     console.log(user);
+    if(user === null){
+      alert("Please Signup/Login to Continue");
+    }
+    else{
 
     const docRef = await firebase
       .firestore()
@@ -56,7 +94,7 @@ const MembersMain = (props) => {
         stripe.redirectToCheckout({ sessionId });
       }
     });
-  };
+  };}
 
   const onJoinWaitList = (event) => {
     setWaitlistActive(true);
@@ -64,16 +102,77 @@ const MembersMain = (props) => {
   const onCancel = (event) => {
     setWaitlistActive(false);
   };
-
-  const handleToken = (event) => {
-    console.log(event.token, event.addresses);
+  const formButtonHandler = event =>{
+    setFormButton(true);
+    console.log("hi")
   };
-
+  const onFormSubmit =  async (event)  => {
+    event.preventDefault();
+    console.log(event.target.value)
+    console.log(user.email)
+    const data = {
+      
+      PGName: PGName,
+        KidName: KidName,
+        Birthdate: Birthdate,
+        Phone: Phone,
+        email: user.email,
+        signUpDate: Date.now(),
+        Accepted: "no"
+    };
+    const docRefs = await db
+    .collection("Waitlist").add(data)
+    console.log(docRefs.id)
+   
+   setFormButton(false);
+  }
+  
+   if(Paid && formButton === false){
+    return(
+    <button className={classes.button} onClick={(formButtonHandler)}>Add Child to Waitlist</button>)
+  }
+    if(formButton ===true){
+    return(
+    <div className={classes.main}> <form onSubmit={onFormSubmit}>
+            <label htmlFor="name">Parent/Guardian Full Name: </label>
+            <input
+              type="PGName"
+              id="PGName"
+              onBlur = {onChangeHandler}
+              onChange = {onChangeHandler}
+            />
+            <label htmlFor="name">Child Full Name: </label>
+            <input
+              type="name"
+              id="KidName"
+              onBlur = {onChangeHandler}
+              onChange = {onChangeHandler}
+            />
+            <label htmlFor="Date">Birth Date: </label>
+            <input
+              type="Date"
+              id="Birthdate"
+              onBlur = {onChangeHandler}
+              onChange = {onChangeHandler}
+            />
+            <label htmlFor="phone">Phone Number: </label>
+            <input
+              type="phone"
+              id="Phone"
+              onBlur = {onChangeHandler}
+              onChange = {onChangeHandler}
+            />
+           
+            <button onClick = {onFormSubmit}>Submit</button>
+            </form>
+          </div>)
+   }
   if (waitlistActive === false) {
- 
+   
     return (
+    
       <Fragment>
-        <button onClick={onJoinWaitList}>Join Waitlist</button>
+        <button className={classes.button} onClick={onJoinWaitList}>Join Waitlist</button>
       </Fragment>
     );
   }
@@ -89,6 +188,8 @@ const MembersMain = (props) => {
       </Fragment>
     );
   }
+ 
+  
 };
 
 export default MembersMain;

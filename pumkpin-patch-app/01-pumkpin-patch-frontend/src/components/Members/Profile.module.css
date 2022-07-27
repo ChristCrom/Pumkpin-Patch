@@ -1,0 +1,14 @@
+li {
+    margin-top: 10%;
+    display:inline;
+
+    border: solid 1px black;
+    padding: 10px;
+   
+  
+    
+    line-height: 4em;
+}
+.table{
+    transform: translateY(20%) ;
+}
