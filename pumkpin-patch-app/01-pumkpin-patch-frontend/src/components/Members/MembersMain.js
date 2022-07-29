@@ -110,6 +110,8 @@ const MembersMain = (props) => {
     event.preventDefault();
     console.log(event.target.value)
     console.log(user.email)
+    const d = new Date();
+
     const data = {
       
       PGName: PGName,
@@ -117,12 +119,13 @@ const MembersMain = (props) => {
         Birthdate: Birthdate,
         Phone: Phone,
         email: user.email,
-        signUpDate: Date.now(),
-        Accepted: "no"
+        signUpDate: d.toUTCString(),
+        Accepted: "no",
+        
     };
     const docRefs = await db
-    .collection("Waitlist").add(data)
-    console.log(docRefs.id)
+    .collection("Waitlist").doc(data.KidName).set(data)
+   
    
    setFormButton(false);
   }

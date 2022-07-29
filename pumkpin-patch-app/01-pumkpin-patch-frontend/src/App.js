@@ -11,6 +11,7 @@ import AdminPage from "./components/Admin/AdminPage";
 import {Route, Router, Routes} from "react-router-dom"
 import MembersMain from "./components/Members/MembersMain";
 import Profile from "./components/Members/Profile";
+import Enroll from "./components/Enrollment/Enroll";
 
 
 function App() {
@@ -76,6 +77,14 @@ function App() {
         <InformationPages setPageSelector = {setPageSelector} PageSelector={pageSelector}/>
         <LoginMain isLoggedIn={isLoggedIn} setLoginActive={setLoginActive} loginActive={loginActive} setIsLoggedIn={setIsLoggedIn}  />
         <AdminPage />
+
+      </Route>
+      <Route path="/enroll">
+      {/* <Header    setPageSelector={setPageSelector}isLoggedIn={isLoggedIn} onLoginClick={LoginButtonActiveHandler} onLogoutClick={logOutHandler} /> 
+        <InformationPages setPageSelector = {setPageSelector} PageSelector={pageSelector}/>
+        <LoginMain isLoggedIn={isLoggedIn} setLoginActive={setLoginActive} loginActive={loginActive} setIsLoggedIn={setIsLoggedIn}  /> */}
+        <Enroll />
+
 
       </Route>
 
