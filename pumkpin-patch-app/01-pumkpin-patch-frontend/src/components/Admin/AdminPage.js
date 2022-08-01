@@ -74,8 +74,7 @@ const AdminPage = (props) => {
         }
       );
   };
- 
- 
+
   const enrollHandler = (e) => {
     console.log(e.target.name);
     console.log(e.target.value);
@@ -106,7 +105,6 @@ const AdminPage = (props) => {
       </Modal>
     );
   }
-
 
   if (user && !button) {
     console.log(user);

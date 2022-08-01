@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Card from '../UI/Card';
-import Modal from '../UI/Modal';
-import classes from './LoginPage.module.css'
+import React, { useState, useEffect } from "react";
+import Card from "../UI/Card";
+import Modal from "../UI/Modal";
+import classes from "./LoginPage.module.css";
 
-import * as firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth.js';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
+import * as firebaseui from "firebaseui";
+import "firebaseui/dist/firebaseui.css";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth.js";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const LoginPage = (props) => {
-  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredEmail, setEnteredEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState();
-  const [enteredPassword, setEnteredPassword] = useState('');
+  const [enteredPassword, setEnteredPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -20,19 +20,19 @@ const LoginPage = (props) => {
     setEnteredEmail(event.target.value);
 
     setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6
+      event.target.value.includes("@") && enteredPassword.trim().length > 6
     );
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
     setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes('@')
+      event.target.value.trim().length > 6 && enteredEmail.includes("@")
     );
   };
 
   const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('@'));
+    setEmailIsValid(enteredEmail.includes("@"));
   };
 
   const validatePasswordHandler = () => {
@@ -47,28 +47,26 @@ const LoginPage = (props) => {
     }
 
     if (!formIsValid) {
-      alert("Please Enter a Valid Email and Password!")
+      alert("Please Enter a Valid Email and Password!");
     }
   };
-  const loginHandler = event => {
+  const loginHandler = (event) => {
     props.onLoginClick(true);
     console.log("clicked");
   };
-  const ForgotHandler = event => {
+  const ForgotHandler = (event) => {
     props.onForgotPassword(event);
   };
 
- 
-
   return (
-   <Modal>
-     <Card className={classes.login}>
-       <form onSubmit={submitHandler}>
+    <Modal>
+      <Card className={classes.login}>
+        <form onSubmit={submitHandler}>
           <div
-            className={`${classes.control} ${emailIsValid === false ? classes.invalid : ''
-              }`}
+            className={`${classes.control} ${
+              emailIsValid === false ? classes.invalid : ""
+            }`}
           >
-
             <label htmlFor="email">E-Mail</label>
             <input
               type="email"
@@ -79,8 +77,9 @@ const LoginPage = (props) => {
             />
           </div>
           <div
-            className={`${classes.control} ${passwordIsValid === false ? classes.invalid : ''
-              }`}
+            className={`${classes.control} ${
+              passwordIsValid === false ? classes.invalid : ""
+            }`}
           >
             <label htmlFor="password">Password</label>
             <input
@@ -91,20 +90,26 @@ const LoginPage = (props) => {
               onBlur={validatePasswordHandler}
             />
           </div>
-          <div className={classes.actions}>
+          <div className={classes.actions}></div>
 
-          </div>
-          
-          <button type='submit' className={classes.button}>Login</button>
-
+          <button type="submit" className={classes.button}>
+            Login
+          </button>
         </form>
-        <button className={classes.CancelButton} onClick={loginHandler}>Cancel</button> 
-        <button className={classes.FPbutton} onClick={() => { ForgotHandler(true); loginHandler(); }}>Forgot Password?</button> 
-        </Card>
-        </Modal>
-        );
-     
-
- 
-}
+        <button className={classes.CancelButton} onClick={loginHandler}>
+          Cancel
+        </button>
+        <button
+          className={classes.FPbutton}
+          onClick={() => {
+            ForgotHandler(true);
+            loginHandler();
+          }}
+        >
+          Forgot Password?
+        </button>
+      </Card>
+    </Modal>
+  );
+};
 export default LoginPage;

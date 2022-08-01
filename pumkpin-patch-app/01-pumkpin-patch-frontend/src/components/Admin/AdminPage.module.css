@@ -1,14 +1,11 @@
 li {
-   
-    display:inline;
+  display: inline;
 
-    border: solid 1px black;
-    padding: 10px;
-   
-  
-    
-    line-height: 4em;
+  border: solid 1px black;
+  padding: 10px;
+
+  line-height: 4em;
 }
-.table{
-    transform: translateY(4rem) ;
+.table {
+  transform: translateY(4rem);
 }

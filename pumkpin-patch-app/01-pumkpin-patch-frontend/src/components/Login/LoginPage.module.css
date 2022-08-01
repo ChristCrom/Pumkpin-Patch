@@ -8,7 +8,6 @@
   display: grid;
 }
 
-
 .control {
   margin: 1rem 0;
   display: flex;
@@ -51,7 +50,6 @@
   text-align: center;
 }
 .button {
-  
   font: inherit;
   border: 1px solid #4f005f;
   background: #4f005f;
@@ -62,7 +60,7 @@
   border-radius: 30px;
   margin: 35px;
   align-items: center;
-  transform: translate(150%,215%);
+  transform: translate(150%, 215%);
 }
 
 .button:hover,
@@ -86,7 +84,6 @@ button:active:disabled {
 }
 
 .CancelButton {
-  
   font: inherit;
   border: 1px solid #4f005f;
   background: #4f005f;
@@ -97,7 +94,7 @@ button:active:disabled {
   border-radius: 30px;
   margin: 35px;
   align-items: center;
-  transform: translate(275%,-50%);
+  transform: translate(275%, -50%);
 }
 
 .CancelButton:hover,
@@ -110,19 +107,14 @@ button:active:disabled {
   outline: none;
 }
 
-
-
-.FPbutton{
-  transform: translate(0%,-800%);
-  font-size:medium;
- 
+.FPbutton {
+  transform: translate(0%, -800%);
+  font-size: medium;
 }
-
 
 @media (min-width: 768px) {
   .control {
     align-items: center;
     flex-direction: row;
   }
-
 }

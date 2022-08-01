@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Card from "../UI/Card";
 import Modal from "../UI/Modal";
-import classes from './ChangePassword.module.css'
+import classes from "./ChangePassword.module.css";
 
-const ChangePassword = props => {
-    const [enteredConPassword, setEnteredConPassword] = useState("");
+const ChangePassword = (props) => {
+  const [enteredConPassword, setEnteredConPassword] = useState("");
   const [conPasswordIsValid, setConPasswordIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState();
@@ -14,7 +14,9 @@ const ChangePassword = props => {
     setEnteredConPassword(event.target.value);
 
     setFormIsValid(
-      (event.target.value.trim().length > 6 && event.target.value === enteredPassword ) && enteredPassword.trim().length > 6
+      event.target.value.trim().length > 6 &&
+        event.target.value === enteredPassword &&
+        enteredPassword.trim().length > 6
     );
   };
 
@@ -22,12 +24,17 @@ const ChangePassword = props => {
     setEnteredPassword(event.target.value);
 
     setFormIsValid(
-      event.target.value.trim().length > 6 && enteredConPassword.trim().length > 6 && enteredConPassword === enteredPassword
+      event.target.value.trim().length > 6 &&
+        enteredConPassword.trim().length > 6 &&
+        enteredConPassword === enteredPassword
     );
   };
 
   const validateConPasswordHandler = () => {
-    setConPasswordIsValid(enteredConPassword.trim().length > 6 && enteredConPassword === enteredPassword);
+    setConPasswordIsValid(
+      enteredConPassword.trim().length > 6 &&
+        enteredConPassword === enteredPassword
+    );
   };
 
   const validatePasswordHandler = () => {
@@ -42,24 +49,22 @@ const ChangePassword = props => {
     }
 
     if (!formIsValid) {
-      alert("Please enter valid password")
+      alert("Please enter valid password");
     }
   };
-  const onCancelHandler = event => {
+  const onCancelHandler = (event) => {
     props.setChangePassword(false);
     props.setLoginActive(true);
-    
   };
- 
 
   return (
     <Modal>
       <Card className={classes.login}>
         <form onSubmit={submitHandler}>
-         
           <div
-            className={`${classes.control} ${passwordIsValid === false ? classes.invalid : ''
-              }`}
+            className={`${classes.control} ${
+              passwordIsValid === false ? classes.invalid : ""
+            }`}
           >
             <label htmlFor="password">New Password</label>
             <input
@@ -70,11 +75,11 @@ const ChangePassword = props => {
               onBlur={validatePasswordHandler}
             />
           </div>
-           <div
-            className={`${classes.control} ${conPasswordIsValid === false ? classes.invalid : ''
-              }`}
+          <div
+            className={`${classes.control} ${
+              conPasswordIsValid === false ? classes.invalid : ""
+            }`}
           >
-
             <label htmlFor="password">Confirm New Password</label>
             <input
               type="password"
@@ -84,15 +89,15 @@ const ChangePassword = props => {
               onBlur={validateConPasswordHandler}
             />
           </div>
-          <div className={classes.actions}>
+          <div className={classes.actions}></div>
 
-          </div>
-          
-          <button type='submit' className={classes.button}>Submit</button>
-
+          <button type="submit" className={classes.button}>
+            Submit
+          </button>
         </form>
-        <button className={classes.CancelButton} onClick={onCancelHandler}>Cancel</button> 
-        
+        <button className={classes.CancelButton} onClick={onCancelHandler}>
+          Cancel
+        </button>
       </Card>
     </Modal>
   );
